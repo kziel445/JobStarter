@@ -1,7 +1,7 @@
 ﻿
 namespace JobStarter.Application.Interfaces
 {
-    internal interface ICommandExecutor
+    public interface ICommandExecutor
     {
         void ExecuteCommand(string commandText);
     }
