@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace JobStarter
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ILogger<MainWindow> _logger;  // Logger
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+        public MainWindow(ILogger<MainWindow> logger)
+        {
+            InitializeComponent();
+            _logger = logger;
         }
     }
 }

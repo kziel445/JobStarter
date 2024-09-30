@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,10 +22,20 @@ namespace JobStarter
 
 
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+
             mainWindow.Show();
         }
+
         private void ConfigureServices(IServiceCollection services)
         {
+            // logger
+            services.AddLogging(config =>
+            {
+                config.AddConsole();
+                config.AddFile("Logs/app.log");
+                config.SetMinimumLevel(LogLevel.Information);
+            });
+
             // services.AddSingleton<ICommandExecutor, CommandExecutor>();
             // services.AddSingleton<CommandRunnerService>();
 
