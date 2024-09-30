@@ -1,8 +1,17 @@
 # JobStarter
 ## Hierarchia
-### Domain 
-### Application  
+### Domain  
+<b> Commands </b>  
+Command - model  
+ICommandService
+
+### Application   
+<b> Commands </b>  validation and execute  
+Command logic 
+<b> Validation </b> - available commands
+
 ### Infrastructure  
+Command implementation
 ### UI
 
 ## 1. Lista komend
