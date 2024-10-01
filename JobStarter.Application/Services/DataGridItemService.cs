@@ -13,19 +13,19 @@ namespace JobStarter.Application.Services
     internal class DataGridItemService : IDataGridItem
     {
         public readonly ILogger<IDataGridItem> _logger;
+        public readonly IDataGridItem _dataGridItem;
         public readonly ObservableCollection<Item> _items;
-        public DataGridItemService(ILogger<IDataGridItem> logger)
+        public DataGridItemService(ILogger<IDataGridItem> logger, IDataGridItem dataGridItem)
         {
             _logger = logger;
-            _items= new ObservableCollection<Item>();
+            _items = new ObservableCollection<Item>();
+            _dataGridItem = dataGridItem;
         }
-
-        public void AddItem(string text)
-        {
-            throw new NotImplementedException();
-        }
-
         public ObservableCollection<Item> GetItems()
+        {
+            return _dataGridItem.GetItems();
+        }
+        public void AddItem(string text)
         {
             throw new NotImplementedException();
         }
