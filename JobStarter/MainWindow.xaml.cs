@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace JobStarter
 {
@@ -35,7 +37,9 @@ namespace JobStarter
             _logger = logger;
             _commandRunnerService = commandRunnerService;
 
-            // DEBUG command
+            
+
+            //  TMP DEBUG command
             var tmpList = new List<string>();
             tmpList.Add("Test");
             _commandRunnerService.RunCommandsSequentially(tmpList);

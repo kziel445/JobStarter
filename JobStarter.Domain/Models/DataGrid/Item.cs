@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobStarter.Domain.Models
+namespace JobStarter.Domain.Models.DataGrid
 {
-    public class Command
+    public class Item
     {
+        public int Id { get; set; }
         public string Text { get; set; }
-        public Command(string text) 
-        {
-            Text = text;
-        }
     }
 }
