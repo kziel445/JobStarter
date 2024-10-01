@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace JobStarter.Application.Services
 {
-    internal class CommandRunnerService
+    public class CommandRunnerService
     {
         private readonly ICommandExecutor _commandExecutor;
         public readonly ILogger<ICommandExecutor> _logger;

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace JobStarter.Infrastructure.Services
 {
-    internal class CommandExecutor : ICommandExecutor
+    public class CommandExecutor : ICommandExecutor
     {
         public readonly ILogger<ICommandExecutor> _logger;
 

@@ -1,16 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using JobStarter.Application.Interfaces;
+using JobStarter.Application.Services;
+using JobStarter.Infrastructure.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace JobStarter
 {
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         private ServiceProvider _serviceProvider;
 
@@ -36,8 +33,8 @@ namespace JobStarter
                 config.SetMinimumLevel(LogLevel.Information);
             });
 
-            // services.AddSingleton<ICommandExecutor, CommandExecutor>();
-            // services.AddSingleton<CommandRunnerService>();
+            services.AddSingleton<ICommandExecutor, CommandExecutor>();
+            services.AddSingleton<CommandRunnerService>();
 
             services.AddSingleton<MainWindow>();
         }
