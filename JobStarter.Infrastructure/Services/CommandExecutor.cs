@@ -15,7 +15,7 @@ namespace JobStarter.Infrastructure.Services
         public void ExecuteCommand(string commandText)
         {
             _logger.LogError("Infrastructure: Not Impemented");
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }

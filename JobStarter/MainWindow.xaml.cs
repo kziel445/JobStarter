@@ -1,4 +1,5 @@
 ﻿using JobStarter.Application.Services;
+using JobStarter.Domain.Models.DataGrid;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace JobStarter
     {
         private readonly ILogger<MainWindow> _logger;  // Logger
         private readonly CommandRunnerService _commandRunnerService;
+        public ObservableCollection<Item> Items { get; set; }
 
         public MainWindow()
         {
@@ -37,12 +39,25 @@ namespace JobStarter
             _logger = logger;
             _commandRunnerService = commandRunnerService;
 
+            Items = new ObservableCollection<Item>()
+                {
+                new Item { Id = 1, Text = "Przykład 1" },
+                new Item { Id = 2, Text = "Przykład 2" }
+            };
+
+            DataContext = this;
             
+            // tmp dodaj wiersze
+            int newId = Items.Count + 1;
+            Items.Add(new Item { Id = newId, Text = "Ser" });
+
 
             //  TMP DEBUG command
             var tmpList = new List<string>();
             tmpList.Add("Test");
             _commandRunnerService.RunCommandsSequentially(tmpList);
+
+
         }
     }
 }

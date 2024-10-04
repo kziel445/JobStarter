@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="CommandGrid" Grid.Row="1" Margin="0,0,350,300">
+        <DataGrid x:Name="CommandGrid" Grid.Row="1" Margin="0,0,350,300" ItemsSource="{Binding Items}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Komenda"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Komenda" Binding="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
 
