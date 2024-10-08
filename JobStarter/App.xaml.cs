@@ -44,8 +44,8 @@ namespace JobStarter
                 
                 var Items = new ObservableCollection<Item>()
                 {
-                new Item { Id = 1, Text = "Przykład 1" },
-                new Item { Id = 2, Text = "Przykład 2" }
+                new Item { Id = 1, Text = "ping 8.8.8.8" },
+                new Item { Id = 2, Text = "start chrome https://example.com" }
                 };
                 //// 
                 return new DataGridItemService(logger, Items);
