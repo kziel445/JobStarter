@@ -65,5 +65,13 @@ namespace JobStarter
         {
             _dataGridItemService.AddItem("{Wpisz komende}");
         }
+
+        private void RemoveRow_Click(object sender, RoutedEventArgs e)
+        {
+            if (CommandGrid.SelectedItem is Item selectedItem)
+            {
+                _dataGridItemService.RemoveItem(selectedItem);
+            }
+        }
     }
 }

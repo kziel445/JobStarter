@@ -20,8 +20,4 @@
     <ProjectReference Include="..\JobStarter.Infrastructure\JobStarter.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Buttons\" />
-  </ItemGroup>
-
 </Project>

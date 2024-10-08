@@ -32,7 +32,7 @@ namespace JobStarter.Application.Services
 
         public void RemoveItem(Item item)
         {
-            throw new NotImplementedException();
+            _items.Remove(item);
         }
     }
 }
