@@ -11,7 +11,7 @@ namespace JobStarter.Application.Interfaces
     public interface IDataGridItem
     {
         public ObservableCollection<Item> GetItems();
-        public Item AddItem(string text);
+        public void AddItem(string text);
         public void RemoveItem(Item item);
     }
 }

@@ -22,7 +22,7 @@ namespace JobStarter.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        Item IDataGridItem.AddItem(string text)
+        void IDataGridItem.AddItem(string text)
         {
             throw new NotImplementedException();
         }

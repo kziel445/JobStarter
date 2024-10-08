@@ -25,10 +25,9 @@ namespace JobStarter.Application.Services
         {
             return _items;
         }
-        public Item AddItem(string text = "{default}")
+        public void AddItem(string text = "{default}")
         {
-            //GetItems
-            return new Item() { Id = 1,Text = text };
+            _items.Add(new Item() { Id = _items.Count + 1, Text = text });
         }
 
         public void RemoveItem(Item item)

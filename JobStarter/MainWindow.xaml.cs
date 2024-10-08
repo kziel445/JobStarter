@@ -63,9 +63,7 @@ namespace JobStarter
         // buttons
         private void AddRow_Click(object sender, RoutedEventArgs e)
         {
-            // _dataGridItemService.AddItem("{Wpisz komende}");
-            // var item = new Item { Id = Items.Count + 1, Text = "{Wpisz komende}"};
-            // Items.Add(item);
+            _dataGridItemService.AddItem("{Wpisz komende}");
         }
     }
 }

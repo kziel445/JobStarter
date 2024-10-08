@@ -51,8 +51,6 @@ namespace JobStarter
                 return new DataGridItemService(logger, Items);
             });
 
-            
-
             services.AddSingleton<MainWindow>();
         }
     }
