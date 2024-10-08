@@ -11,10 +11,6 @@ namespace JobStarter.Infrastructure.Services
 {
     internal class DataGridItemHandler : IDataGridItem
     {
-        public void AddItem(string text)
-        {
-            throw new NotImplementedException();
-        }
 
         public ObservableCollection<Item> GetItems()
         {
@@ -22,6 +18,11 @@ namespace JobStarter.Infrastructure.Services
         }
 
         public void RemoveItem(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        Item IDataGridItem.AddItem(string text)
         {
             throw new NotImplementedException();
         }

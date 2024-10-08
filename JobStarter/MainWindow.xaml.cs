@@ -1,4 +1,5 @@
-﻿using JobStarter.Application.Services;
+﻿using JobStarter.Application.Interfaces;
+using JobStarter.Application.Services;
 using JobStarter.Domain.Models.DataGrid;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,37 +28,44 @@ namespace JobStarter
     {
         private readonly ILogger<MainWindow> _logger;  // Logger
         private readonly CommandRunnerService _commandRunnerService;
-        public ObservableCollection<Item> Items { get; set; }
+        private readonly IDataGridItem _dataGridItemService;
+        public ObservableCollection<Item> Items => _dataGridItemService.GetItems();
 
         public MainWindow()
         {
             InitializeComponent();
         }
-        public MainWindow(ILogger<MainWindow> logger, CommandRunnerService commandRunnerService)
+        public MainWindow(
+            ILogger<MainWindow> logger,
+            CommandRunnerService commandRunnerService,
+            IDataGridItem dataGridItemService
+            )
         {
             InitializeComponent();
             _logger = logger;
             _commandRunnerService = commandRunnerService;
-
-            Items = new ObservableCollection<Item>()
-                {
-                new Item { Id = 1, Text = "Przykład 1" },
-                new Item { Id = 2, Text = "Przykład 2" }
-            };
+            _dataGridItemService = dataGridItemService;
 
             DataContext = this;
             
             // tmp dodaj wiersze
-            int newId = Items.Count + 1;
-            Items.Add(new Item { Id = newId, Text = "Ser" });
+            //int newId = Items.Count + 1;
+            //Items.Add(new Item { Id = newId, Text = "Ser" });
 
 
             //  TMP DEBUG command
-            var tmpList = new List<string>();
-            tmpList.Add("Test");
-            _commandRunnerService.RunCommandsSequentially(tmpList);
+            //var tmpList = new List<string>();
+            //tmpList.Add("Test");
+            //_commandRunnerService.RunCommandsSequentially(tmpList);
 
 
+        }
+        // buttons
+        private void AddRow_Click(object sender, RoutedEventArgs e)
+        {
+            // _dataGridItemService.AddItem("{Wpisz komende}");
+            // var item = new Item { Id = Items.Count + 1, Text = "{Wpisz komende}"};
+            // Items.Add(item);
         }
     }
 }
