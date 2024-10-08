@@ -10,24 +10,24 @@ using System.Threading.Tasks;
 
 namespace JobStarter.Application.Services
 {
-    internal class DataGridItemService : IDataGridItem
+    public class DataGridItemService : IDataGridItem
     {
         public readonly ILogger<IDataGridItem> _logger;
-        public readonly IDataGridItem _dataGridItem;
         public readonly ObservableCollection<Item> _items;
-        public DataGridItemService(ILogger<IDataGridItem> logger, IDataGridItem dataGridItem)
+        public DataGridItemService(
+            ILogger<IDataGridItem> logger,
+            ObservableCollection<Item> items)
         {
             _logger = logger;
-            _items = new ObservableCollection<Item>();
-            _dataGridItem = dataGridItem;
+            _items = items;
         }
         public ObservableCollection<Item> GetItems()
         {
-            return _dataGridItem.GetItems();
+            return _items;
         }
-        public void AddItem(string text)
+        public void AddItem(string text = "{default}")
         {
-            throw new NotImplementedException();
+            _items.Add(new Item() { Id = _items.Count + 1, Text = text });
         }
 
         public void RemoveItem(Item item)
