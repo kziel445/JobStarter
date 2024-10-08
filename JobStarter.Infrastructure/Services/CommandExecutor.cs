@@ -14,8 +14,11 @@ namespace JobStarter.Infrastructure.Services
 
         public void ExecuteCommand(string commandText)
         {
+            System.Diagnostics.Process.Start("CMD.exe",$"/c {commandText}");
             _logger.LogError("Infrastructure: Not Impemented");
             // throw new NotImplementedException();
         }
+
+
     }
 }

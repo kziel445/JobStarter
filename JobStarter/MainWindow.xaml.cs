@@ -73,5 +73,12 @@ namespace JobStarter
                 _dataGridItemService.RemoveItem(selectedItem);
             }
         }
+
+        private void RunCommands_Click(object sender, RoutedEventArgs e)
+        {
+            _commandRunnerService.RunCommandsSequentially(
+                _dataGridItemService.GetItems().Select(item => item.Text).ToList()
+                );
+        }
     }
 }
