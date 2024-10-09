@@ -22,7 +22,7 @@ namespace JobStarter.Application.Services
         {
             foreach (var command in commands)
             {
-                _logger.LogInformation("Application: kolejne komendy");
+                _logger.LogInformation($"Application: Comand: {command}");
                 _commandExecutor.ExecuteCommand(command);
             }
         }
