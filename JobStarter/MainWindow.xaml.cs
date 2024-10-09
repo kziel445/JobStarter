@@ -73,7 +73,6 @@ namespace JobStarter
         // timer_tick
         private void Timer_Tick(object sender, EventArgs e)
         {
-            TimeSpan.Zero = 
             TimeLabel.Content = "Timer: " + _timer.ToString("HH:mm:ss");
         }
         // buttons
