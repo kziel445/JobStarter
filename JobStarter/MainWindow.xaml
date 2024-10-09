@@ -18,12 +18,14 @@
         <Button x:Name="RemoveRowButton" Content="Usun" HorizontalAlignment="Left" Margin="51,138,0,0" VerticalAlignment="Top" Click="RemoveRowButton_Click"/>
         <Button x:Name="RunCommandsButton" Content="Run" HorizontalAlignment="Left" Margin="375,136,0,0" VerticalAlignment="Top" Width="75" Click="RunCommandsButton_Click"/>
         <CheckBox Content="Run on JobStarter start" HorizontalAlignment="Left" Margin="229,138,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="TimeLabel" Content="Timer: HH:mm:ss" HorizontalAlignment="Left" Margin="17,188,0,0" VerticalAlignment="Top"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,219,0,185" RenderTransformOrigin="0.5,0.5" Width="248">
-            <Button x:Name="StartButton" Content="Start" Width="75" Margin="4"/>
-            <Button x:Name="PauseButton" Content="Pause" Width="75" Margin="4"/>
-            <Button x:Name="ResetButton" Content="Reset" Width="75" Margin="4"/>
+        <Label x:Name="TimeLabel" Content="Timer: 00:00:00" HorizontalAlignment="Left" Margin="17,188,0,0" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" Margin="0,219,547,134">
+            <Button x:Name="StartButton" Content="Start" Width="75" Margin="4" Click="StartButton_Click"/>
+            <Button x:Name="PauseButton" Content="Pause" Width="75" Margin="4" Click="PauseButton_Click"/>
+            <Button x:Name="ResetButton" Content="Reset" Width="75" Margin="4" Click="ResetButton_Click"/>
         </StackPanel>
+        
+
 
     </Grid>
 </Window>

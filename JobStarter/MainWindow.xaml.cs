@@ -31,6 +31,7 @@ namespace JobStarter
         private readonly IDataGridItem _dataGridItemService;
         public ObservableCollection<Item> Items => _dataGridItemService.GetItems();
         private DispatcherTimer _timer;
+        private TimeSpan elapsedTime;
 
         public MainWindow()
         {
@@ -51,11 +52,11 @@ namespace JobStarter
 
             // timer
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(5);
+            _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
             _timer.Start();
-            
 
+            elapsedTime = TimeSpan.Zero;
 
 
             // tmp dodaj wiersze
@@ -73,9 +74,11 @@ namespace JobStarter
         // timer_tick
         private void Timer_Tick(object sender, EventArgs e)
         {
-            TimeLabel.Content = "Timer: " + _timer.ToString("HH:mm:ss");
+            elapsedTime = elapsedTime.Add(_timer.Interval);
+            TimeLabel.Content = "Timer: " + elapsedTime.ToString(@"hh\:mm\:ss");
         }
-        // buttons
+
+        // data grid buttons
         private void AddRowButton_Click(object sender, RoutedEventArgs e)
         {
             _dataGridItemService.AddItem("{Wpisz komende}");
@@ -98,6 +101,22 @@ namespace JobStarter
             _commandRunnerService.RunCommandsSequentially(
                 _dataGridItemService.GetItems().Select(item => item.Text).ToList()
                 );
+        }
+        // timer buttons
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            _timer.Start();
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            _timer.Stop();
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            elapsedTime = TimeSpan.Zero;
+            TimeLabel.Content = "Timer: " + elapsedTime.ToString(@"hh\:mm\:ss");
         }
     }
 }
