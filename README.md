@@ -22,3 +22,6 @@ Command implementation
 ## UI
 Lista - checkbox start z wlaczeniem - RUN
 Timer - pauza, kontunuacja, checkbox start z wlaczeniem
+
+TODOS:
+when defaul command then not execute

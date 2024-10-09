@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JobStarter"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="-1,0,1,0">
         <DataGrid x:Name="CommandGrid" Grid.Row="1" Margin="0,0,350,300" ItemsSource="{Binding Items}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"/>
@@ -14,9 +14,16 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="AddRow" Content="Dodaj" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Click="AddRow_Click"/>
-        <Button x:Name="RemoveRow" Content="Usun" HorizontalAlignment="Left" Margin="51,138,0,0" VerticalAlignment="Top" Click="RemoveRow_Click"/>
-        <Button x:Name="RunCommands" Content="Run" HorizontalAlignment="Left" Margin="375,136,0,0" VerticalAlignment="Top" Width="75" Click="RunCommands_Click"/>
+        <Button x:Name="AddRowButton" Content="Dodaj" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Click="AddRowButton_Click"/>
+        <Button x:Name="RemoveRowButton" Content="Usun" HorizontalAlignment="Left" Margin="51,138,0,0" VerticalAlignment="Top" Click="RemoveRowButton_Click"/>
+        <Button x:Name="RunCommandsButton" Content="Run" HorizontalAlignment="Left" Margin="375,136,0,0" VerticalAlignment="Top" Width="75" Click="RunCommandsButton_Click"/>
         <CheckBox Content="Run on JobStarter start" HorizontalAlignment="Left" Margin="229,138,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TimeLabel" Content="Timer: HH:mm:ss" HorizontalAlignment="Left" Margin="17,188,0,0" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,219,0,185" RenderTransformOrigin="0.5,0.5" Width="248">
+            <Button x:Name="StartButton" Content="Start" Width="75" Margin="4"/>
+            <Button x:Name="PauseButton" Content="Pause" Width="75" Margin="4"/>
+            <Button x:Name="ResetButton" Content="Reset" Width="75" Margin="4"/>
+        </StackPanel>
+
     </Grid>
 </Window>

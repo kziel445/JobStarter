@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Threading;
 
 namespace JobStarter
 {
@@ -30,6 +30,7 @@ namespace JobStarter
         private readonly CommandRunnerService _commandRunnerService;
         private readonly IDataGridItem _dataGridItemService;
         public ObservableCollection<Item> Items => _dataGridItemService.GetItems();
+        private DispatcherTimer _timer;
 
         public MainWindow()
         {
@@ -47,7 +48,16 @@ namespace JobStarter
             _dataGridItemService = dataGridItemService;
 
             DataContext = this;
+
+            // timer
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(5);
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
             
+
+
+
             // tmp dodaj wiersze
             //int newId = Items.Count + 1;
             //Items.Add(new Item { Id = newId, Text = "Ser" });
@@ -60,21 +70,31 @@ namespace JobStarter
 
 
         }
+        // timer_tick
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan.Zero = 
+            TimeLabel.Content = "Timer: " + _timer.ToString("HH:mm:ss");
+        }
         // buttons
-        private void AddRow_Click(object sender, RoutedEventArgs e)
+        private void AddRowButton_Click(object sender, RoutedEventArgs e)
         {
             _dataGridItemService.AddItem("{Wpisz komende}");
         }
 
-        private void RemoveRow_Click(object sender, RoutedEventArgs e)
+        private void RemoveRowButton_Click(object sender, RoutedEventArgs e)
         {
             if (CommandGrid.SelectedItem is Item selectedItem)
             {
                 _dataGridItemService.RemoveItem(selectedItem);
             }
+            else
+            {
+                _dataGridItemService.RemoveItem(_dataGridItemService.GetItems().Last());
+            }
         }
 
-        private void RunCommands_Click(object sender, RoutedEventArgs e)
+        private void RunCommandsButton_Click(object sender, RoutedEventArgs e)
         {
             _commandRunnerService.RunCommandsSequentially(
                 _dataGridItemService.GetItems().Select(item => item.Text).ToList()
