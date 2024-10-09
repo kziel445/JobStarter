@@ -1,6 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using JobStarter.Application.Interfaces;
+using JobStarter.Application.Services;
+using JobStarter.Domain.Models.DataGrid;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace JobStarter
 {
     /// <summary>
@@ -22,15 +27,58 @@ namespace JobStarter
     public partial class MainWindow : Window
     {
         private readonly ILogger<MainWindow> _logger;  // Logger
+        private readonly CommandRunnerService _commandRunnerService;
+        private readonly IDataGridItem _dataGridItemService;
+        public ObservableCollection<Item> Items => _dataGridItemService.GetItems();
 
         public MainWindow()
         {
             InitializeComponent();
         }
-        public MainWindow(ILogger<MainWindow> logger)
+        public MainWindow(
+            ILogger<MainWindow> logger,
+            CommandRunnerService commandRunnerService,
+            IDataGridItem dataGridItemService
+            )
         {
             InitializeComponent();
             _logger = logger;
+            _commandRunnerService = commandRunnerService;
+            _dataGridItemService = dataGridItemService;
+
+            DataContext = this;
+            
+            // tmp dodaj wiersze
+            //int newId = Items.Count + 1;
+            //Items.Add(new Item { Id = newId, Text = "Ser" });
+
+
+            //  TMP DEBUG command
+            //var tmpList = new List<string>();
+            //tmpList.Add("Test");
+            //_commandRunnerService.RunCommandsSequentially(tmpList);
+
+
+        }
+        // buttons
+        private void AddRow_Click(object sender, RoutedEventArgs e)
+        {
+            _dataGridItemService.AddItem("{Wpisz komende}");
+        }
+
+        private void RemoveRow_Click(object sender, RoutedEventArgs e)
+        {
+            if (CommandGrid.SelectedItem is Item selectedItem)
+            {
+                _dataGridItemService.RemoveItem(selectedItem);
+            }
+        }
+
+        private void RunCommands_Click(object sender, RoutedEventArgs e)
+        {
+            _commandRunnerService.RunCommandsSequentially(
+                _dataGridItemService.GetItems().Select(item => item.Text).ToList()
+                );
         }
     }
 }

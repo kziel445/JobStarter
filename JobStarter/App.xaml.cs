@@ -1,16 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using JobStarter.Application.Interfaces;
+using JobStarter.Application.Services;
+using JobStarter.Domain.Models.DataGrid;
+using JobStarter.Infrastructure.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace JobStarter
 {
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         private ServiceProvider _serviceProvider;
 
@@ -36,8 +35,21 @@ namespace JobStarter
                 config.SetMinimumLevel(LogLevel.Information);
             });
 
-            // services.AddSingleton<ICommandExecutor, CommandExecutor>();
-            // services.AddSingleton<CommandRunnerService>();
+            services.AddSingleton<ICommandExecutor, CommandExecutor>();
+            services.AddSingleton<CommandRunnerService>();
+            services.AddTransient<IDataGridItem>(provider =>
+            {
+                // TODO: tymczasowa inicjalizacja
+                var logger = provider.GetRequiredService<ILogger<IDataGridItem>>();
+                
+                var Items = new ObservableCollection<Item>()
+                {
+                new Item { Id = 1, Text = "ping 8.8.8.8" },
+                new Item { Id = 2, Text = "start chrome https://example.com" }
+                };
+                //// 
+                return new DataGridItemService(logger, Items);
+            });
 
             services.AddSingleton<MainWindow>();
         }

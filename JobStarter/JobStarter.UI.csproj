@@ -15,4 +15,9 @@
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JobStarter.Application\JobStarter.Application.csproj" />
+    <ProjectReference Include="..\JobStarter.Infrastructure\JobStarter.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
