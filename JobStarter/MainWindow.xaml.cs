@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,11 +43,7 @@ namespace JobStarter
         {
             InitializeComponent();
         }
-        public MainWindow(
-            ILogger<MainWindow> logger,
-            CommandRunnerService commandRunnerService,
-            IDataGridItem dataGridItemService
-            )
+        public MainWindow(ILogger<MainWindow> logger, CommandRunnerService commandRunnerService, IDataGridItem dataGridItemService)
         {
             InitializeComponent();
             _logger = logger;
@@ -59,6 +56,9 @@ namespace JobStarter
             _timer.Tick += Timer_Tick;
             _timer.Start();
         }
+
+        
+
         // timer_tick
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -105,6 +105,12 @@ namespace JobStarter
         {
             elapsedTime = TimeSpan.Zero;
             TimeLabel.Content = "Timer: " + elapsedTime.ToString(@"hh\:mm\:ss");
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            _timer.Stop();
+            MessageBox.Show(elapsedTime.ToString());
         }
     }
 }
