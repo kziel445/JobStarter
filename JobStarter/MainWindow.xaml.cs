@@ -30,8 +30,13 @@ namespace JobStarter
         private readonly CommandRunnerService _commandRunnerService;
         private readonly IDataGridItem _dataGridItemService;
         public ObservableCollection<Item> Items => _dataGridItemService.GetItems();
-        private DispatcherTimer _timer;
-        private TimeSpan elapsedTime;
+
+        // timer
+        private DispatcherTimer _timer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromSeconds(1)
+        };
+        private TimeSpan elapsedTime = TimeSpan.Zero;
 
         public MainWindow()
         {
@@ -51,25 +56,8 @@ namespace JobStarter
             DataContext = this;
 
             // timer
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
             _timer.Start();
-
-            elapsedTime = TimeSpan.Zero;
-
-
-            // tmp dodaj wiersze
-            //int newId = Items.Count + 1;
-            //Items.Add(new Item { Id = newId, Text = "Ser" });
-
-
-            //  TMP DEBUG command
-            //var tmpList = new List<string>();
-            //tmpList.Add("Test");
-            //_commandRunnerService.RunCommandsSequentially(tmpList);
-
-
         }
         // timer_tick
         private void Timer_Tick(object sender, EventArgs e)

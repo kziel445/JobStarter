@@ -25,3 +25,5 @@ Timer - pauza, kontunuacja, checkbox start z wlaczeniem
 
 TODOS:
 when defaul command then not execute
+when removed command from list change id's
+10.10 WPF z StopWatch onion
