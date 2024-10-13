@@ -4,7 +4,7 @@ namespace JobStarter.Application.Interfaces
 {
     public interface ITimeSpent
     {
-        IEnumerable<TimeSpent> GetSpent();
+        IEnumerable<TimeSpent> GetAll();
         TimeSpent GetById(int id);
         void Add(TimeSpent timeSpent);
         void Update(TimeSpent timeSpent);
