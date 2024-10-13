@@ -20,22 +20,7 @@ namespace JobStarter.Application.Services
             _repository = repository;
         }
 
-        public TimeSpent ParseLine(string line)
-        {
-            var parts = line.Split(',');
-            return new TimeSpent
-            {
-                Id = int.Parse(parts[0]),
-                Date = DateOnly.Parse(parts[1]),
-                Spent = TimeSpan.Parse(parts[2]),
-            };
-        }
-
-        public void SaveAll()
-        {
-
-            throw new NotImplementedException();
-        }
+        
         public IEnumerable<TimeSpent> GetAll()
         {
             _logger.LogInformation("Start all TimeSpent retrive.");
