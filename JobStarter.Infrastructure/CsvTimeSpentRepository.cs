@@ -3,6 +3,7 @@ using JobStarter.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,27 +37,45 @@ namespace JobStarter.Infrastructure
 
         public IEnumerable<TimeSpent> GetAll()
         {
-            throw new NotImplementedException();
+            var lines = File.ReadAllLines(_filePath);
+            return lines.Select(ParseLine).ToList();
         }
 
         public TimeSpent GetById(int id)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(x => x.Id == id);
         }
 
         public void Add(TimeSpent timeSpent)
         {
-            throw new NotImplementedException();
+            var models = GetAll().ToList();
+            timeSpent.Id = models.Any() ? models.Max(x => x.Id) + 1 : 1;
+            models.Add(timeSpent);
+
+            SaveAll(models);
         }
 
         public void Update(TimeSpent timeSpent)
         {
-            throw new NotImplementedException();
+            var models = GetAll().ToList();
+            var existing = models.FirstOrDefault(x => x.Id == timeSpent.Id);
+            if (existing != null)
+            {
+                models.Remove(existing);
+                models.Add(timeSpent);
+                SaveAll(models);
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var models = GetAll().ToList();
+            var existing = GetById(id);
+            if (existing != null)
+            {
+                models.Remove(existing);
+                SaveAll(models);
+            }
         }
     }
 }

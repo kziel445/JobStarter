@@ -20,7 +20,6 @@ namespace JobStarter.Application.Services
             _repository = repository;
         }
 
-        
         public IEnumerable<TimeSpent> GetAll()
         {
             _logger.LogInformation("Start retrive all TimeSpent.");
