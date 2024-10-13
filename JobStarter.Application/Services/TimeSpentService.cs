@@ -23,7 +23,7 @@ namespace JobStarter.Application.Services
         
         public IEnumerable<TimeSpent> GetAll()
         {
-            _logger.LogInformation("Start all TimeSpent retrive.");
+            _logger.LogInformation("Start retrive all TimeSpent.");
             var model = _repository.GetAll();
 
             _logger.LogInformation($"Retrived {model.Count()} items.");
@@ -33,20 +33,37 @@ namespace JobStarter.Application.Services
 
         public TimeSpent GetById(int id)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation($"Start {id} all TimeSpent.");
+            var model = _repository.GetById(id);
+
+            _logger.LogInformation($"Retrived id: {id} item.");
+
+            return model;
         }
         public void Add(TimeSpent timeSpent)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation($"Start adding.");
+            
+            _repository.Add(timeSpent);
+
+            _logger.LogInformation($"Added {timeSpent.Id}, {timeSpent.Date},{timeSpent.Spent}");
         }
 
         public void Update(TimeSpent timeSpent)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation($"Start updating.");
+            var Old = _repository.GetById(timeSpent.Id);
+            _repository.Update(timeSpent);
+
+            _logger.LogInformation($"Updated {timeSpent.Id}, {timeSpent.Date},{timeSpent.Spent} from {Old.Id}, {Old.Date},{Old.Spent}");
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation($"Start removing.");
+            var Old = _repository.GetById(id);
+            _repository.Delete(id);
+
+            _logger.LogInformation($"Removed {Old.Id}, {Old.Date},{Old.Spent}");
         }
     }
 }

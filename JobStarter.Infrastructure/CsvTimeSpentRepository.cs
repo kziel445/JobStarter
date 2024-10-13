@@ -33,15 +33,6 @@ namespace JobStarter.Infrastructure
             var lines = models.Select(x => $"{x.Id},{x.Date},{x.Spent}");
             File.WriteAllLines(_filePath, lines);
         }
-        public void Add(TimeSpent timeSpent)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<TimeSpent> GetAll()
         {
@@ -53,7 +44,17 @@ namespace JobStarter.Infrastructure
             throw new NotImplementedException();
         }
 
+        public void Add(TimeSpent timeSpent)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(TimeSpent timeSpent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
