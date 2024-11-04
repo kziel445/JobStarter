@@ -30,6 +30,7 @@ namespace JobStarter
         private readonly ILogger<MainWindow> _logger;  // Logger
         private readonly CommandRunnerService _commandRunnerService;
         private readonly IDataGridItem _dataGridItemService;
+        private readonly ITimeSpent _timeSpent;
         public ObservableCollection<Item> Items => _dataGridItemService.GetItems();
 
         // timer
@@ -43,12 +44,13 @@ namespace JobStarter
         {
             InitializeComponent();
         }
-        public MainWindow(ILogger<MainWindow> logger, CommandRunnerService commandRunnerService, IDataGridItem dataGridItemService)
+        public MainWindow(ILogger<MainWindow> logger, CommandRunnerService commandRunnerService, IDataGridItem dataGridItemService, ITimeSpent timeSpent)
         {
             InitializeComponent();
             _logger = logger;
             _commandRunnerService = commandRunnerService;
             _dataGridItemService = dataGridItemService;
+            _timeSpent = timeSpent;
 
             DataContext = this;
 
@@ -110,6 +112,7 @@ namespace JobStarter
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             _timer.Stop();
+
             MessageBox.Show(elapsedTime.ToString());
         }
     }
