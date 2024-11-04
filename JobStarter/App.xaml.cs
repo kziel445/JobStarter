@@ -1,6 +1,7 @@
 ﻿using JobStarter.Application.Interfaces;
 using JobStarter.Application.Services;
 using JobStarter.Domain.Models.DataGrid;
+using JobStarter.Infrastructure;
 using JobStarter.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -34,6 +35,8 @@ namespace JobStarter
                 config.AddFile("Logs/app.log");
                 config.SetMinimumLevel(LogLevel.Information);
             });
+            // database init
+            services.AddSingleton<ITimeSpent>(provide => new CsvTimeSpentRepository("mainStart.csv"));
 
             services.AddSingleton<ICommandExecutor, CommandExecutor>();
             services.AddSingleton<CommandRunnerService>();

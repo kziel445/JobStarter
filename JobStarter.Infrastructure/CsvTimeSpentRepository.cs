@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JobStarter.Infrastructure
 {
-    internal class CsvTimeSpentRepository : ITimeSpent
+    public class CsvTimeSpentRepository : ITimeSpent
     {
         private readonly string _filePath;
 
