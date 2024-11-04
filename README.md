@@ -27,3 +27,4 @@ TODOS:
 when defaul command then not execute
 when removed command from list change id's
 10.10 WPF z StopWatch onion
+zmienić id na GuID
