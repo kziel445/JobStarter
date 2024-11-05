@@ -54,6 +54,16 @@ namespace JobStarter.Infrastructure
 
             SaveAll(models);
         }
+        public void Add(string timeSpentString)
+        {
+            var timeSpent = ParseLine(timeSpentString);
+            var models = GetAll().ToList();
+            timeSpent.Id = models.Any() ? models.Max(x => x.Id) + 1 : 1;
+            models.Add(timeSpent);
+
+            SaveAll(models);
+        }
+
 
         public void Update(TimeSpent timeSpent)
         {
