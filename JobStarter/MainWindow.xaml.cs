@@ -1,5 +1,6 @@
 ﻿using JobStarter.Application.Interfaces;
 using JobStarter.Application.Services;
+using JobStarter.Domain.Models;
 using JobStarter.Domain.Models.DataGrid;
 using Microsoft.Extensions.Logging;
 using System;
@@ -112,7 +113,7 @@ namespace JobStarter
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             _timer.Stop();
-
+            _timeSpent.Add("1,20.11.2024,01:01:01");
             MessageBox.Show(elapsedTime.ToString());
         }
     }
