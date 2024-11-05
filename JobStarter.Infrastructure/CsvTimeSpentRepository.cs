@@ -16,6 +16,16 @@ namespace JobStarter.Infrastructure
         public CsvTimeSpentRepository(string filePath)
         {
             _filePath = filePath;
+            CheckIfFileExist();
+        }
+
+        public void CheckIfFileExist()
+        {
+            if(!File.Exists(_filePath))
+            {
+                // closing file after creation
+                using (File.Create(_filePath)) { }
+            }
         }
 
         public TimeSpent ParseLine(string line)
