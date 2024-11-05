@@ -7,6 +7,7 @@ namespace JobStarter.Application.Interfaces
         IEnumerable<TimeSpent> GetAll();
         TimeSpent GetById(int id);
         void Add(TimeSpent timeSpent);
+        void Add(string timeSpentString);
         void Update(TimeSpent timeSpent);
         void Delete(int id);
     }
