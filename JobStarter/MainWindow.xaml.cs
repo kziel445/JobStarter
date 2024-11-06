@@ -112,8 +112,10 @@ namespace JobStarter
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            // czas z time label, parsowanko
             _timer.Stop();
-            _timeSpent.Add("1,20.11.2024,01:01:01");
+            var today = DateTime.Today;
+            _timeSpent.Add($"1,{today.ToString("d")},01:01:01");
             MessageBox.Show(elapsedTime.ToString());
         }
     }
