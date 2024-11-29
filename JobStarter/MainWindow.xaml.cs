@@ -1,5 +1,6 @@
 ﻿using JobStarter.Application.Interfaces;
 using JobStarter.Application.Services;
+using JobStarter.Domain.Models;
 using JobStarter.Domain.Models.DataGrid;
 using Microsoft.Extensions.Logging;
 using System;
@@ -30,6 +31,7 @@ namespace JobStarter
         private readonly ILogger<MainWindow> _logger;  // Logger
         private readonly CommandRunnerService _commandRunnerService;
         private readonly IDataGridItem _dataGridItemService;
+        private readonly ITimeSpent _timeSpent;
         public ObservableCollection<Item> Items => _dataGridItemService.GetItems();
 
         // timer
@@ -43,12 +45,13 @@ namespace JobStarter
         {
             InitializeComponent();
         }
-        public MainWindow(ILogger<MainWindow> logger, CommandRunnerService commandRunnerService, IDataGridItem dataGridItemService)
+        public MainWindow(ILogger<MainWindow> logger, CommandRunnerService commandRunnerService, IDataGridItem dataGridItemService, ITimeSpent timeSpent)
         {
             InitializeComponent();
             _logger = logger;
             _commandRunnerService = commandRunnerService;
             _dataGridItemService = dataGridItemService;
+            _timeSpent = timeSpent;
 
             DataContext = this;
 
@@ -109,7 +112,10 @@ namespace JobStarter
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            // czas z time label, parsowanko
             _timer.Stop();
+            var today = DateTime.Today;
+            _timeSpent.Add($"1,{today.ToString("d")},01:01:01");
             MessageBox.Show(elapsedTime.ToString());
         }
     }

@@ -36,5 +36,9 @@
             <Button x:Name="PauseButton" Content="Pause" Height="20" Width="75" Margin="4" Click="PauseButton_Click"/>
             <Button x:Name="ResetButton" Content="Reset" Height="20" Width="75" Margin="4" Click="ResetButton_Click"/>
         </StackPanel>
+        <DataGrid Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,27" Grid.RowSpan="2">
+            <DataGrid.Columns>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
